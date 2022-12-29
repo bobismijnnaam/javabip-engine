@@ -253,7 +253,7 @@ public class DataCoordinatorKernel implements BIPEngine, InteractionExecutor, Da
 			if (object == null) {
 				throw new BIPEngineException("Registering a null component.");
 			}
-			actor = glueCoordinator.register(object, id, useSpec, doRuntimeVerification, useVerCorsReport);
+			// actor = glueCoordinator.register(object, id, useSpec, doRuntimeVerification, useVerCorsReport);
 
 			BIPComponent component = glueCoordinator.getComponentFromObject(object);
 			Behaviour behaviour = glueCoordinator.getBehaviourByComponent(component);
@@ -428,7 +428,7 @@ public class DataCoordinatorKernel implements BIPEngine, InteractionExecutor, Da
 	 * @param decidingComponent
 	 * @param currentState
 	 */
-	@Override
+	// @Override
 	public void informInteral(BIPComponent decidingComponent, String currentState) {
 
 	}
@@ -440,7 +440,7 @@ public class DataCoordinatorKernel implements BIPEngine, InteractionExecutor, Da
 	 * @param decidingComponent
 	 * @param currentState
 	 */
-	@Override
+	// @Override
 	public void informSpontaneous(BIPComponent decidingComponent, String currentState) {
 
 	}
@@ -533,15 +533,15 @@ public class DataCoordinatorKernel implements BIPEngine, InteractionExecutor, Da
 							Set<Port> providingPorts = componentBehaviourMapping.get(aComponent).getDataProvidingPorts(
 									wire.getFrom().getId());
 
-							if (wire.isCopy()){
-								Gson gson = new Gson();
-								Object inValueCopy = gson.fromJson(gson.toJson(inValue), Object.class);
-								dataList.add(new DataContainer(inDataItem.name(), inValueCopy, aComponent, providingPorts));
-								dataValues.add(inValueCopy);
-							} else {
-								dataList.add(new DataContainer(inDataItem.name(), inValue, aComponent, providingPorts));
-								dataValues.add(inValue);
-							}
+							// if (wire.isCopy()){
+							// 	Gson gson = new Gson();
+							// 	Object inValueCopy = gson.fromJson(gson.toJson(inValue), Object.class);
+							// 	dataList.add(new DataContainer(inDataItem.name(), inValueCopy, aComponent, providingPorts));
+							// 	dataValues.add(inValueCopy);
+							// } else {
+							// 	dataList.add(new DataContainer(inDataItem.name(), inValue, aComponent, providingPorts));
+							// 	dataValues.add(inValue);
+							// }
 						}
 					}
 					logger.debug("Added a data evaluation of data " + inDataItem.name() + " with the values "
@@ -819,7 +819,7 @@ public class DataCoordinatorKernel implements BIPEngine, InteractionExecutor, Da
 				for (Port outport : portsProviding) {
 					if (outport.getId().equals(providingPort.getId())
 							&& outport.getSpecType().equals(providingPort.getSpecType())) {
-						return wire.isCopy();
+						return null; // wire.isCopy();
 					}
 				}
 			}
